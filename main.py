@@ -185,12 +185,19 @@ def compute_codebertscore(pred, ref):
 
 async def generate_code(prompt_text, agent):
     prompt_text = "Provide Python code with all imports, no Markdown." + prompt_text
+    MAX_CHARS = 45000  # safe for 16k context (~12k tokens)
+
+    if len(prompt_text) > MAX_CHARS:
+        print(f"[WARN] prompt_text too long ({len(prompt_text)} chars). Truncating...")
+        prompt_text = prompt_text[:MAX_CHARS]
     result = await Runner.run(agent, prompt_text)
     # print("Result", result )
     return result.final_output.strip()
 
 async def generate_code_sys_prompt(prompt_text, agent):
     prompt_text = "You are an expert Python coder. You will be given a function signature and an incomplete or partially incorrect body. Understand the function from its name and complete the body logically, keeping the structure and intent consistent. Return Python code with all imports, no Markdown." + prompt_text
+
+
     result = await Runner.run(agent, prompt_text)
     # print("Result", result )
     return result.final_output.strip()
@@ -570,7 +577,8 @@ def main():
     parser.add_argument("--output", required=True)
     parser.add_argument("--seed", type=int, help="Fixed seed for reproducibility")
     parser.add_argument("--mutations", type=int, help="Number of mutations to generate")
-    parser.add_argument("--model", default="gpt-3.5-turbo-0125")
+    # parser.add_argument("--model", default="gpt-3.5-turbo-0125")
+    parser.add_argument("--model", default="gpt-4o-mini-2024-07-18")
     parser.add_argument("--mutate-only", action="store_true", help="Run only mutation pipeline")
     parser.add_argument("--mutate-llm", action="store_true", help="Run mutation + LLM + analysis")
     parser.add_argument("--mutate-code", action="store_true", help="Mutate canonical code instead of prompt")
