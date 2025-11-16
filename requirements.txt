@@ -161,3 +161,5 @@ wrapt==1.17.3
 xxhash==3.6.0
 yarl==1.22.0
 zipp==3.23.0
+astor
+git+https://github.com/PrithivirajDamodaran/Parrot_Paraphraser.git
