@@ -3,13 +3,10 @@ Before running anything:
 # 1. Install dependencies
 pip install -r requirements.txt
 
-# 2. Install Parrot paraphraser
-pip install git+https://github.com/PrithivirajDamodaran/Parrot_Paraphraser.git
-
-# 3.Install radamsa for mutation fuzzing
+# 2.Install radamsa for mutation fuzzing
 https://gitlab.com/akihe/radamsa
 
-# 4. Make sure OPENAI_API_KEY is set if using LLM mode
+# 3. Make sure OPENAI_API_KEY is set if using mutate-llm or mutate-code mode
 echo "OPENAI_API_KEY=sk-yourkeyhere" > .env
 
 
