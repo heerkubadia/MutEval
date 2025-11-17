@@ -115,10 +115,23 @@ python main.py --input data/trial.csv --output out.csv --mutate-llm
 → should raise:
 ❌ No OpenAI API key found. Set OPENAI_API_KEY in .env.
 
-✅ 8. Help / Usage Message
+✅ 8. Code Mutation Mode 
+Performs semantic mutations on the canonical code solution. Runs the full HumanEval-like pipeline with code generation, tests, and metrics.
+Input CSV must contain a canonical_solution column
+For each task, the canonical solution is mutated using code-level transformations and given to llm as code context. 
+Produces output with columns:
+task_id, seed, model, original_prompt, mutated_prompt, base_codes, mut_codes, base_passed, mutated_passed, similarity, codebertscore, pass@1_base, pass@1_mut, etc.
+
+python main.py \
+  --input data/humaneval.csv \
+  --output results2/results_code_gpt-4o-2024-05-13.csv \
+  --mutate-code
+(optionally model if --model is used)
+
+✅ 9. Help / Usage Message
 python main.py -h
 
 Should show all supported options:
 --input, --output, --seed, --mutations, --model,
---mutate-only, --mutate-llm
+--mutate-only, --mutate-llm, --mutate-code
 
