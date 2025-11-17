@@ -124,8 +124,9 @@ task_id, seed, model, original_prompt, mutated_prompt, base_codes, mut_codes, ba
 
 python main.py \
   --input data/trial.csv \
-  --output results/results_code.csv \
-  --mutate-code
+  --output results/results_code_gpt35.csv \
+  --mutate-code \
+  --model gpt-3.5-turbo-0125
 (optionally model if --model is used)
 
 ✅ 9. Help / Usage Message
