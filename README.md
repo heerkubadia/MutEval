@@ -123,8 +123,8 @@ Produces output with columns:
 task_id, seed, model, original_prompt, mutated_prompt, base_codes, mut_codes, base_passed, mutated_passed, similarity, codebertscore, pass@1_base, pass@1_mut, etc.
 
 python main.py \
-  --input data/humaneval.csv \
-  --output results2/results_code_gpt-4o-2024-05-13.csv \
+  --input data/trial.csv \
+  --output results/results_code.csv \
   --mutate-code
 (optionally model if --model is used)
 
